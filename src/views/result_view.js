@@ -19,19 +19,11 @@ ResultView.prototype.render = function () {
   const name = this.createMunroHeading();
   munroContainer.appendChild(name);
 
-  // const munrosList = this.createMunroList();
-  // munroContainer.appendChild(munrosList);
+  const munroList = this.createMunroList();
+  munroContainer.appendChild(munroList);
 
   this.container.appendChild(munroContainer);
 
-
-
-  // for (let munro of data){
-  //   this.container.innerHTML = '';
-  //   const munroName = document.createElement('p');
-  //   munroName.textContent = `name: ${munro.name} | meaning: ${munro.meaning} | height: ${munro.height}`;
-  //   this.container.appendChild(munroName);
-  // }
 };
 
 ResultView.prototype.createMunroHeading = function () {
@@ -40,25 +32,28 @@ ResultView.prototype.createMunroHeading = function () {
   if (!this.munro.name) {
     name.textContent = 'Misc';
   }else {
-    name.textContent = `name: ${this.munro.name} | meaning: ${this.munro.meaning} | height: ${this.munro.height}`;
+    name.textContent = this.munro.name;
   }
   return name;
 };
 
-// ResultView.prototype.createMunroList = function () {
-//   const munrosList = document.createElement('ul');
-//   munrosList.classList.add('munros');
-//   this.populateList(munrosList);
-//   return munrosList;
-// };
+ResultView.prototype.createMunroList = function () {
+  const munrosList = document.createElement('ul');
+  munrosList.classList.add('munros');
+  this.populateList(munrosList);
+  return munrosList;
+};
 
 ResultView.prototype.populateList = function (list) {
-  console.log(list);
-  list.forEach((munro) => {
-    const munroListItem = document.createElement('p');
-    munroListItem.textContent = `name: ${munro.name} | meaning: ${munro.meaning} | height: ${munro.height}`;
-  list.appendChild(munroListItem);
-  });
+  console.log(this.munro);
+  const munroListMeaning = document.createElement('li');
+  munroListMeaning.textContent = `meaning: ${this.munro.meaning}`;
+
+  const munroListHeight = document.createElement('li');
+  munroListHeight.textContent = `height: ${this.munro.height}`;
+
+  list.appendChild(munroListMeaning);
+  list.appendChild(munroListHeight);
 };
 
 module.exports = ResultView;
