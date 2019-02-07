@@ -6,7 +6,7 @@ const Munros = function () {
 };
 
 Munros.prototype.bindEvents = function () {
-
+  
 };
 
 Munros.prototype.getData = function () {
