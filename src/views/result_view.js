@@ -7,8 +7,8 @@ const ResultView = function (container, munro) {
 
 ResultView.prototype.bindEvents = function () {
   PubSub.subscribe('Munros:data-ready', (evt) => {
-    const munro = evt.detail;
-    this.render(munro);
+    this.munro = evt.detail;
+    this.render();
   });
 };
 
@@ -19,10 +19,10 @@ ResultView.prototype.render = function () {
   const name = this.createMunroHeading();
   munroContainer.appendChild(name);
 
-  const munrosList = this.createMunroList();
-  munroContainer.appendChild(munrosList);
+  // const munrosList = this.createMunroList();
+  // munroContainer.appendChild(munrosList);
 
-  this.container.appendChild(munrosList);
+  this.container.appendChild(munroContainer);
 
 
 
@@ -40,24 +40,24 @@ ResultView.prototype.createMunroHeading = function () {
   if (!this.munro.name) {
     name.textContent = 'Misc';
   }else {
-    name.textContent = this.munro.name;
+    name.textContent = `name: ${this.munro.name} | meaning: ${this.munro.meaning} | height: ${this.munro.height}`;
   }
   return name;
 };
 
-ResultView.prototype.createMunroList = function () {
-  const munrosList = document.createElement('ul');
-  munrosList.classList.add('munros');
-  this.populateList(munrosList);
-  return munrosList;
-};
+// ResultView.prototype.createMunroList = function () {
+//   const munrosList = document.createElement('ul');
+//   munrosList.classList.add('munros');
+//   this.populateList(munrosList);
+//   return munrosList;
+// };
 
 ResultView.prototype.populateList = function (list) {
-  // console.log(this.container);
-  this.container.forEach((munro) => {
-    const munroListItem = document.createElement('li');
-    munroListItem.textContent = munro.name;
-    list.appendChild(munroListItem);
+  console.log(list);
+  list.forEach((munro) => {
+    const munroListItem = document.createElement('p');
+    munroListItem.textContent = `name: ${munro.name} | meaning: ${munro.meaning} | height: ${munro.height}`;
+  list.appendChild(munroListItem);
   });
 };
 
