@@ -50,10 +50,13 @@ ResultView.prototype.populateList = function (list) {
   munroListMeaning.textContent = `meaning: ${this.munro.meaning}`;
 
   const munroListHeight = document.createElement('li');
+  // const munroHeightIcon = document.createElement('img');
+  // munroHeightIcon.src = '../public/images/small_mountain.png';
   munroListHeight.textContent = `height: ${this.munro.height}`;
 
   list.appendChild(munroListMeaning);
   list.appendChild(munroListHeight);
+  // list.appendChild(munroHeightIcon);
 };
 
 module.exports = ResultView;
